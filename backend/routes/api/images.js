@@ -11,6 +11,7 @@ router.post('', singleMulterUpload('image'), asyncHandler(async (req, res) => {
     res.json(image);
   } catch (err) {
     console.error(err);
+    res.json(err);
   }
 }));
 
