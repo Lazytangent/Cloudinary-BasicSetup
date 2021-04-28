@@ -9,18 +9,25 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       imageUrl: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        nullable: false,
       },
       userId: {
-        type: Sequelize.NUMBER
+        type: Sequelize.NUMBER,
+        nullable: false,
+        references: {
+          model: "Users",
+        },
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('now'),
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('now'),
       }
     });
   },
