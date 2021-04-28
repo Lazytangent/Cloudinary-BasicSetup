@@ -2,14 +2,7 @@ const cloudinary = require('cloudinary').v2;
 const multer = require('multer');
 
 const singlePublicFileUpload = async (file) => {
-  try {
-    const image = await cloudinary.uploader.upload(file);
-    console.log(image.url);
-    res.json(image);
-  } catch (err) {
-    console.error(err);
-    res.json({ message: "Upload failed." });
-  }
+    return await cloudinary.uploader.upload(file);
 };
 
 const storage = multer.memoryStorage({
