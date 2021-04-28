@@ -1,3 +1,5 @@
+import { csrfFetch } from './csrf';
+
 const SET_IMAGE = 'images/SET_IMAGE';
 
 const setImage = (image) => ({
@@ -8,7 +10,7 @@ const setImage = (image) => ({
 export const uploadImage = (imageData) => async (dispatch) => {
   const formData = new FormData();
   formData.append("image", imageData);
-  const res = await fetch('/api/images', {
+  const res = await csrfFetch('/api/images', {
     method: "POST",
     headers: {
       "Content-Type": "multipart/form-data",
