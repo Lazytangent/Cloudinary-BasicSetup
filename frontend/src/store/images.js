@@ -5,8 +5,16 @@ const setImage = (image) => ({
   image,
 });
 
-export const uploadImage = (image) => async (dispatch) => {
-  const res = await fetch('/api/images');
+export const uploadImage = (imageData) => async (dispatch) => {
+  const formData = new FormData();
+  formData.append("image", imageData);
+  const res = await fetch('/api/images', {
+    method: "POST",
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+    body: formData,
+  });
   const image = await res.json();
   dispatch(setImage(image.url));
 };
