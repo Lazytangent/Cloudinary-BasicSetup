@@ -10,7 +10,6 @@ const formatBufferTo64 = (file) =>
 
 const singlePublicFileUpload = async (file) => {
   const data = formatBufferTo64(file);
-  console.log(file);
   return await cloudinary.uploader.upload(data.content);
 };
 
