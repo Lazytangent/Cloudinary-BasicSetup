@@ -18,6 +18,7 @@ export const uploadImage = (imageData) => async (dispatch) => {
     body: formData,
   });
   const image = await res.json();
+  console.log(image);
   dispatch(setImage(image.url));
 };
 

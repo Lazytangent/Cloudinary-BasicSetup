@@ -1,8 +1,17 @@
 const cloudinary = require('cloudinary').v2;
 const multer = require('multer');
+const path = require('path');
+const DatauriParser = require('datauri/parser');
+
+const parser = new DatauriParser();
+
+const formatBufferTo64 = (file) =>
+  parser.format(path.extname(file.originalname).toString(), file.buffer);
 
 const singlePublicFileUpload = async (file) => {
-    return await cloudinary.uploader.upload(file);
+  const data = formatBufferTo64(file);
+  console.log(file);
+  return await cloudinary.uploader.upload(data.content);
 };
 
 const storage = multer.memoryStorage({
