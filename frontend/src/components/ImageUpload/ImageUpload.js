@@ -6,6 +6,7 @@ import { uploadImage } from '../../store/images';
 const ImageUpload = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
+  const uploadedImage = useSelector((state) => state.images.image);
   const [image, setImage] = useState();
 
   if (!user) return null;
@@ -21,7 +22,6 @@ const ImageUpload = () => {
 
   return (
     <>
-      <h3>Placeholder for ImageUpload</h3>
       <form onSubmit={submitHandler}>
         <input
           type="file"
@@ -29,6 +29,7 @@ const ImageUpload = () => {
         />
         <button type="submit">Upload</button>
       </form>
+      {uploadedImage && <img src={uploadedImage} alt="test" />}
     </>
   );
 };
