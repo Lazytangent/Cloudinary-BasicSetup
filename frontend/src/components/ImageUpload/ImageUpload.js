@@ -17,7 +17,7 @@ const ImageUpload = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(uploadImage(image));
+    dispatch(uploadImage(image, user.id));
   };
 
   return (
