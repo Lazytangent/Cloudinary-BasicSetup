@@ -12,8 +12,10 @@ const rootReducer = combineReducers({
 let enhancer;
 
 if (process.env.NODE_ENV === 'production') {
+  // Just thunk for production, leave logger out of there
   enhancer = applyMiddleware(thunk);
 } else {
+  // Have both thunk and logger in development (and test) environments
   const logger = require('redux-logger').default;
   const composeEnhancers =
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
